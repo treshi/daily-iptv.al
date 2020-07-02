@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/Yankovsky/static-heroku-nodejs.git"
+    "url": "git://github.com/treshi/daily-iptv.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Yankovsky/static-heroku-nodejs/issues"
+    "url": "https://github.com/treshi/daily-iptv/issues"
   },
-  "homepage": "https://github.com/Yankovsky/static-heroku-nodejs"
+  "homepage": "https://github.com/treshi/daily-iptv"
 }
