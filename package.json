@@ -1,6 +1,5 @@
 {
-"publishConfig": { "registry": "https://npm.pkg.github.com/" }  
-  "name": "daily-iptv-nodejs",
+    "name": "daily-iptv-nodejs",
   "version": "0.0.0",
   "description": "daily-iptv-nodejs",
   "main": "app.js",
@@ -17,4 +16,5 @@
     "url": "https://github.com/treshi/daily-iptv/issues"
   },
   "homepage": "https://github.com/treshi/daily-iptv"
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
 }
