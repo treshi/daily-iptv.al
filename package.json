@@ -1,0 +1,19 @@
+{
+  "name": "daily-iptv-nodejs",
+  "version": "0.0.0",
+  "description": "daily-iptv-nodejs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Yankovsky/static-heroku-nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yankovsky/static-heroku-nodejs/issues"
+  },
+  "homepage": "https://github.com/Yankovsky/static-heroku-nodejs"
+}
