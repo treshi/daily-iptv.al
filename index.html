@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-language" content="en"/>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description"
+          content="Image-Uploader is a simple jQuery Drag & Drop Image Uploader plugin made to be used in forms, without AJAX."/>
+    <meta name="keywords" content="image, upload, uploader, image-uploader, jquery, gallery, file, form, static"/>
+    <meta name="author" content="Christian Bayer"/>
+    <meta name="copyright" content="© 2019 - Christian Bayer"/>
+    <meta property="og:url" content="https://piccolo-tv.com"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Image-Uploader"/>
+    <meta property="og:description"
+          content="Image-Uploader is a simple jQuery Drag & Drop Image Uploader plugin made to be used in forms, without AJAX."/>
+    <meta property="og:image" content="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"/>
+
+    <title>DAILY -IPTV</title>
+
+    <link rel="stylesheet" href="dist/image-uploader.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,700|Montserrat:300,400,500,600,700|Source+Code+Pro&display=swap"
+          rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-weight: normal;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            font-size: 16px;
+            font-weight: 300;
+            color: rgba(0, 0, 0, 0.9);
+            line-height: 1.5;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: rgb(255, 255, 255);
+            padding: 1rem;
+        }
+
+        header p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2em;
+            font-weight: 200;
+            margin-bottom: 4rem;
+        }
+
+        main {
+            text-align: justify;
+            position: relative;
+            margin: 4rem 0;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: rgb(255, 255, 255);
+            padding: 1rem 0;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1em;
+            font-weight: 200;
+            margin: 0;
+        }
+
+        a {
+            color: #50ce7d;
+            text-decoration: none;
+        }
+
+        h1,
+        h4,
+        h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 3.6em;
+            margin: 4rem 0 1rem 0;
+        }
+
+        h4 {
+            font-size: 2em;
+            margin: 3rem 0 1rem 0;
+        }
+
+        h6 {
+            font-size: 1.2em;
+            margin: 1rem 0;
+        }
+
+        h4 small {
+            font-size: 70%;
+            font-weight: 300;
+        }
+
+        p {
+            margin: 1rem 0;
+        }
+
+        nav {
+            position: absolute;
+            margin-left: -12em;
+        }
+
+        nav ul {
+            margin-left: 0;
+            list-style: none;
+        }
+
+        nav ul li {
+            padding: .2rem 0;
+        }
+
+        nav ul li a {
+            font-size: 1.2em;
+            font-weight: 400;
+            font-family: 'Montserrat', sans-serif;
+            color: #2196f3;
+        }
+
+        pre {
+            font-family: 'Source Code Pro', monospace;
+            margin: 1rem 0;
+            padding: 1rem 1rem;
+            background: #f3f3f3;
+            font-size: .9em;
+            overflow-x: auto;
+        }
+
+        table code,
+        p code {
+            font-family: 'Source Code Pro', monospace;
+            background: #f3f3f3;
+            font-size: .9em;
+            padding: .1rem .3rem;
+        }
+
+        strong {
+            font-weight: 600;
+        }
+
+        form > button {
+            -webkit-appearance: none;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border: none;
+            background-color: #50ce7d;
+            color: #fff;
+            text-transform: uppercase;
+            display: block;
+            margin: 2rem 0 2rem auto;
+            font-size: 1em;
+        }
+
+        ul {
+            margin-left: 2rem;
+        }
+
+        input {
+            background-color: transparent;
+            border: none;
+            border-radius: 0;
+            outline: none;
+            width: 100%;
+            line-height: normal;
+            font-size: 1em;
+            padding: 0;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+            margin: 0;
+            color: rgba(0, 0, 0, 0.72);
+            background-position: center bottom, center calc(100% - 1px);
+            background-repeat: no-repeat;
+            background-size: 0 2px, 100% 1px;
+            -webkit-transition: background 0s ease-out 0s;
+            -o-transition: background 0s ease-out 0s;
+            transition: background 0s ease-out 0s;
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#2196f3), to(#2196f3)), -webkit-gradient(linear, left top, left bottom, from(#d9d9d9), to(#d9d9d9));
+            background-image: -webkit-linear-gradient(#2196f3, #2196f3), -webkit-linear-gradient(#d9d9d9, #d9d9d9);
+            background-image: -o-linear-gradient(#2196f3, #2196f3), -o-linear-gradient(#d9d9d9, #d9d9d9);
+            background-image: linear-gradient(#2196f3, #2196f3), linear-gradient(#d9d9d9, #d9d9d9);
+            height: 2.4em;
+        }
+
+        input:focus {
+            background-size: 100% 2px, 100% 1px;
+            outline: 0 none;
+            -webkit-transition-duration: 0.3s;
+            -o-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            border-bottom: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+
+        .input-field label {
+            width: 100%;
+            color: #9e9e9e;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            font-size: 1em;
+            cursor: text;
+            -webkit-transition: -webkit-transform .2s ease-out;
+            transition: -webkit-transform .2s ease-out;
+            -webkit-transform-origin: 0 100%;
+            transform-origin: 0 100%;
+            text-align: initial;
+            -webkit-transform: translateY(7px);
+            transform: translateY(7px);
+            pointer-events: none;
+        }
+
+        input:focus + label {
+            color: #2196f3;
+        }
+
+        .input-field {
+            position: relative;
+            margin-top: 2.2rem;
+        }
+
+        .input-field label.active {
+            -webkit-transform: translateY(-15px) scale(0.8);
+            transform: translateY(-15px) scale(0.8);
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+        }
+
+        .container {
+            width: 60%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .step {
+            font-size: 1.6em;
+            font-weight: 600;
+            margin-right: .5rem;
+        }
+
+        .option {
+            margin-top: 2rem;
+            border-bottom: 1px solid #d9d9d9;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, .5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal .content {
+            background: #fff;
+            display: inline-block;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .modal .content h4 {
+            margin-top: 0;
+        }
+
+        .modal .content a.close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: inherit;
+            font-size: 1.4rem;
+            line-height: 1;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        @media screen and (max-width: 1366px) {
+            body {
+                font-size: 15px;
+            }
+
+            nav ul li a {
+                font-size: 1.1em;
+
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            main {
+                margin: 2rem 0;
+            }
+
+            nav {
+                margin-left: -10em;
+            }
+        }
+
+        @media screen and (max-width: 786px) {
+            body {
+                font-size: 14px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .container {
+                width: 80%;
+            }
+        }
+
+        @media screen and (max-width: 450px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151759818-1"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-151759818-1');</script>
+
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>DAILY-IPTV</h1>
+        <p>Daily-Iptv is a simple m3u & m3u8 links to see free tv channels in your tv iphone,smartphone,pc,tablet,laptop.</p>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+
+        <nav>
+            <ul>
+                <li><a href="#howtouse">How to use it</a></li>
+                <li><a href="#options">Options</a></li>
+                <li><a href="#list-1">Playlist 1</a></li>
+                <li><a href="#list-2">Playlist 2</a></li>
+            </ul>
+        </nav>
+
+        <h4 id="howtouse"><a href="#howtouse"># How to use it
+            <small>in 5 steps</small>
+        </a></h4>
+
+        <p><span class="step">1.</span>copy link <code>&lt;head&gt;</code>:</p>
+        <pre><code>&lt;paste en app like gse smart iptv"&gt;</code></pre>
+
+        <p><span class="step">2.</span>upload <code>&lt;body&gt;</code>, click play:
+        </p>
+        <pre><code>&lt;Arab iptv" src="http://149.62.176.140:8080/playlist.m3u8"&gt;&lt;/script&gt;
+&lt;Bein sport" src="http://stream.suboroiptv.tv/Bein2/index.m3u8"&gt;&lt;/script&gt;</code></pre>
+
+        <p><span class="step">3.</span>EPT SPORT HD <code>copy paste into VLC PLAYER"</code> attributte:</p>
+        <pre><code>&lt;form action="http://p.dtv.sx:80/live/visiontv/775142/19812.ts" "&gt;&lt;/form&gt;</code></pre>
+
+        <p><span class="step">4.</span>JUBOX TV</p>
+        <pre><code>&lt;http://162.212.176.254/radiojupok/index.m3u8"&gt;&lt;/div&gt;</code></pre>
+
+        <p><span class="step">5.</span>Initialize it with CAST TV</p>
+        <pre><code>Film Europe HD:http://home.blackkill.org:12500/live/panele62/dayama62/946.ts</code></pre>
+
+        <h4 id="options"><a href="#options"># 28.06.2020
+            <small>FULL GREEK LIST</small>
+        </a></h4>
+
+        <div class="option">
+            <h6>label</h6>
+            <p><strong>Type:</strong> <code>string</code></p>
+            <p><strong>Default:</strong> <code>#EXTINF:-1,-==========Greece==========-
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/100904.m3u8
+#EXTINF:-1,---------- Γενικού ενδιαφέροντος-ειδήσεις -----------
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/54664.m3u8
+#EXTINF:-1,GR: Ert World HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/60281.m3u8
+#EXTINF:-1,GR: ERT Sport HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/43348.m3u8
+#EXTINF:-1,GR: Ert 1
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/43345.m3u8
+#EXTINF:-1,GR: Ert 2
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/43346.m3u8
+#EXTINF:-1,GR: Ert 3
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/43347.m3u8
+#EXTINF:-1,GR: Ant1
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/24676.m3u8
+#EXTINF:-1,GR: Ant1 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/43339.m3u8
+#EXTINF:-1,GR: Ant1 (7h Delay)
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/98080.m3u8
+#EXTINF:-1,GR: Alpha
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17451.m3u8
+#EXTINF:-1,GR: Alpha HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/43338.m3u8
+#EXTINF:-1,GR: Alpha (7h Delay)
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/98087.m3u8
+#EXTINF:-1,GR: Star
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17452.m3u8
+#EXTINF:-1,GR: Star HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/43342.m3u8
+#EXTINF:-1,GR: Star (7h Delay)
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/98081.m3u8
+#EXTINF:-1,GR: Open TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17458.m3u8
+#EXTINF:-1,GR: Open TV HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/43343.m3u8
+#EXTINF:-1,GR: Open TV (7h Delay)
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/98082.m3u8
+#EXTINF:-1,GR: Skai
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/24679.m3u8
+#EXTINF:-1,GR: Skai HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/43341.m3u8
+#EXTINF:-1,GR: Skai (7h Delay)
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/98083.m3u8
+#EXTINF:-1,GR: Mega TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/85626.m3u8
+#EXTINF:-1,GR: Mega TV HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/85625.m3u8
+#EXTINF:-1,GR: Mega TV (7h Delay)
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/98084.m3u8
+#EXTINF:-1,GR: Makedonia TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17566.m3u8
+#EXTINF:-1,GR: Makedonia TV HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/43344.m3u8
+#EXTINF:-1,GR: One Channel HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/65985.m3u8
+#EXTINF:-1,GR: TV100
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17565.m3u8
+#EXTINF:-1,GR: Kontra Channel
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17457.m3u8
+#EXTINF:-1,GR: Kontra Channel (B)
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/75319.m3u8
+#EXTINF:-1,GR: Euronews
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/65984.m3u8
+#EXTINF:-1,GR: Epsilon
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/100906.m3u8
+#EXTINF:-1,GR: Action24
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17474.m3u8
+#EXTINF:-1,GR: ART TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17473.m3u8
+#EXTINF:-1,GR: 4E Tv
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/71089.m3u8
+#EXTINF:-1,GR: Net TV Toronto
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/18379.m3u8
+#EXTINF:-1,GR: E TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/87707.m3u8
+#EXTINF:-1,GR: Best TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/87700.m3u8
+#EXTINF:-1,GR: Alert
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/87692.m3u8
+#EXTINF:-1,GR: Vouli
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17476.m3u8
+#EXTINF:-1,---------- Σινεμά -----------
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/54667.m3u8
+#EXTINF:-1,GR: Fox
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17586.m3u8
+#EXTINF:-1,GR: Fox Life HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17596.m3u8
+#EXTINF:-1,GR: TCM HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/100832.m3u8
+#EXTINF:-1,GR: Village Cinema HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17600.m3u8
+#EXTINF:-1,GR: Nova Life HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52768.m3u8
+#EXTINF:-1,GR: Nova Cinema 1HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/19642.m3u8
+#EXTINF:-1,GR: Nova Cinema 2HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/19641.m3u8
+#EXTINF:-1,GR: Nova Cinema 3HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/27549.m3u8
+#EXTINF:-1,GR: Nova Cinema 4HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/27550.m3u8
+#EXTINF:-1,GR: Ote Cinema 1HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17588.m3u8
+#EXTINF:-1,GR: Ote Cinema 2HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17589.m3u8
+#EXTINF:-1,GR: Ote Cinema 3HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17591.m3u8
+#EXTINF:-1,GR: Ote Series HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17720.m3u8
+#EXTINF:-1,GR: Ote Series Marathon HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/100834.m3u8
+#EXTINF:-1,---------- Τοπικά -----------
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/54668.m3u8
+#EXTINF:-1,GR: Syros TV1
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/60288.m3u8
+#EXTINF:-1,GR: Thraki  Νετ TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/87748.m3u8
+#EXTINF:-1,GR: Attica TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/18717.m3u8
+#EXTINF:-1,GR: Acheloos TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/18714.m3u8
+#EXTINF:-1,GR: Krhth TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17469.m3u8
+#EXTINF:-1,GR: Messinia TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52759.m3u8
+#EXTINF:-1,GR: Samiaki TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52760.m3u8
+#EXTINF:-1,GR: Creta TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52761.m3u8
+#EXTINF:-1,GR: Channel 9
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52767.m3u8
+#EXTINF:-1,GR: Star Kentrikhs Elladas
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52929.m3u8
+#EXTINF:-1,GR: Lychnoc TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/87750.m3u8
+#EXTINF:-1,GR: Vergina TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/100953.m3u8
+#EXTINF:-1,GR: Diktyo
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/45792.m3u8
+#EXTINF:-1,GR: TV Filopoli
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/87740.m3u8
+#EXTINF:-1,GR: Aigaio TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/100954.m3u8
+#EXTINF:-1,GR: Mesogeios TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/87751.m3u8
+#EXTINF:-1,GR: Top Channel
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/87736.m3u8
+#EXTINF:-1,GR: Nea TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/87722.m3u8
+#EXTINF:-1,GR: Irida TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/87715.m3u8
+#EXTINF:-1,GR: Epirus TV1
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/87711.m3u8
+#EXTINF:-1,GR: Eoe TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/87710.m3u8
+#EXTINF:-1,GR: Ena Channel
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/87709.m3u8
+#EXTINF:-1,GR: Alfa Dramas
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/87693.m3u8
+#EXTINF:-1,GR: Ionian Channel
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52762.m3u8
+#EXTINF:-1,---------- Κύπρος -----------
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/54669.m3u8
+#EXTINF:-1,GR: Rik 1 Cyprus
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17569.m3u8
+#EXTINF:-1,GR: Rik 2 Cyprus
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/18351.m3u8
+#EXTINF:-1,GR: Rik Sat Cyprus
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52757.m3u8
+#EXTINF:-1,GR: Ant1 Cyprus
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/18353.m3u8
+#EXTINF:-1,GR: Alpha TV Cyprus
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/18348.m3u8
+#EXTINF:-1,GR: Extra TV Cyprus
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/18352.m3u8
+#EXTINF:-1,GR: Capital Cyprus
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/18680.m3u8
+#EXTINF:-1,GR: Plus Cyprus
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52758.m3u8
+#EXTINF:-1,GR: Omega Cyprus
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/18349.m3u8
+#EXTINF:-1,GR: Sigma Cyprus
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17480.m3u8
+#EXTINF:-1,GR: THT Cyprus
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/78424.m3u8
+#EXTINF:-1,---------- Παιδικά -----------
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17561.m3u8
+#EXTINF:-1,GR: Nickelodeon HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17453.m3u8
+#EXTINF:-1,GR: Disney Channel
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17597.m3u8
+#EXTINF:-1,GR: Disney Junior
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/71600.m3u8
+#EXTINF:-1,GR: Disney XD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17598.m3u8
+#EXTINF:-1,GR: Jim Jam
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17572.m3u8
+#EXTINF:-1,GR: Baby TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/18696.m3u8
+#EXTINF:-1,GR: Smile
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/18694.m3u8
+#EXTINF:-1,GR: Kids Mix 1
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/58139.m3u8
+#EXTINF:-1,GR: Kids Mix 2
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/58140.m3u8
+#EXTINF:-1,GR: Tom and Jerry
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/58061.m3u8
+#EXTINF:-1,GR: Mickey Mouse
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/58046.m3u8
+#EXTINF:-1,GR: Peppa To Gourounaki
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/58060.m3u8
+#EXTINF:-1,GR: Smurfs
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/58045.m3u8
+#EXTINF:-1,GR: Masha and the Bear
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/65472.m3u8
+#EXTINF:-1,GR: Mr Bean Cartoon
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/65485.m3u8
+#EXTINF:-1,GR: SpongeBob
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/71088.m3u8
+#EXTINF:-1,GR: Boomerang HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/53039.m3u8
+#EXTINF:-1,GR: Boomerang 1
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/24135.m3u8
+#EXTINF:-1,GR: Boomerang 2
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/24394.m3u8
+#EXTINF:-1,GR: Zouzounia
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/22707.m3u8
+#EXTINF:-1,GR: Zouzounia 1
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/24007.m3u8
+#EXTINF:-1,GR: Star Kids
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/19152.m3u8
+#EXTINF:-1,GR: Star Kids 1
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/41000.m3u8
+#EXTINF:-1,GR: Star Kids 3
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/22629.m3u8
+#EXTINF:-1,GR: Star Kids 4
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/24008.m3u8
+#EXTINF:-1,GR: Star Kids 5
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/24099.m3u8
+#EXTINF:-1,---------- Ντοκυμαντέρ -----------
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17562.m3u8
+#EXTINF:-1,GR: Animal Planet
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17395.m3u8
+#EXTINF:-1,GR: Discovery
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17396.m3u8
+#EXTINF:-1,GR: Discovery Turbo  Xtra
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17571.m3u8
+#EXTINF:-1,GR: Discovery Science HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17398.m3u8
+#EXTINF:-1,GR: Discovery ID HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17400.m3u8
+#EXTINF:-1,GR: Discovery Show Case
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17397.m3u8
+#EXTINF:-1,GR: Crime + Investigation
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/53929.m3u8
+#EXTINF:-1,GR: National Geographic
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17402.m3u8
+#EXTINF:-1,GR: Nat Geo Wild HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17717.m3u8
+#EXTINF:-1,GR: Travel Channel
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17403.m3u8
+#EXTINF:-1,GR: History HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17394.m3u8
+#EXTINF:-1,GR: Ote History HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/27428.m3u8
+#EXTINF:-1,GR: Viasat History
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17570.m3u8
+#EXTINF:-1,GR: Viasat Explore
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17401.m3u8
+#EXTINF:-1,GR: Viasat Nature
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52755.m3u8
+#EXTINF:-1,GR: BBC Earth
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/62992.m3u8
+#EXTINF:-1,GR: Cbs Reality
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/19280.m3u8
+#EXTINF:-1,GR: E! HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/27936.m3u8
+#EXTINF:-1,GR: TLC
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17404.m3u8
+#EXTINF:-1,GR: Fashion TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/27432.m3u8
+#EXTINF:-1,GR: FoodNetwork
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/27430.m3u8
+#EXTINF:-1,GR: Body In Balance
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/53038.m3u8
+#EXTINF:-1,GR: Fineliving HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/27431.m3u8
+#EXTINF:-1,GR: Nautica Channel
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/27434.m3u8
+#EXTINF:-1,GR: OutDoor
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/27433.m3u8
+#EXTINF:-1,GR: Celebrity Travel
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/58101.m3u8
+#EXTINF:-1,GR: World Party
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/47521.m3u8
+#EXTINF:-1,GR: Hunting
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/24226.m3u8
+#EXTINF:-1,GR: World Fishing Network (USA)
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/73182.m3u8
+#EXTINF:-1,GR: Fishing
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/24153.m3u8
+#EXTINF:-1,GR: Cooking
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/24369.m3u8
+#EXTINF:-1,---------- Μουσικά -----------
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/54662.m3u8
+#EXTINF:-1,GR: New Greek Music
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/57290.m3u8
+#EXTINF:-1,GR: Greek Music Mix
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/58017.m3u8
+#EXTINF:-1,GR: Greek Conserts
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/57464.m3u8
+#EXTINF:-1,GR: Xalastra TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/60287.m3u8
+#EXTINF:-1,GR: NRG 91
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52756.m3u8
+#EXTINF:-1,GR: Magic TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/85624.m3u8
+#EXTINF:-1,GR: Tile Mousiki
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/62453.m3u8
+#EXTINF:-1,GR: Mad TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17459.m3u8
+#EXTINF:-1,GR: Mad Viral
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17481.m3u8
+#EXTINF:-1,GR: Mezzo TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/93560.m3u8
+#EXTINF:-1,GR: Iconcerts HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52763.m3u8
+#EXTINF:-1,GR: Cannali Music
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/18380.m3u8
+#EXTINF:-1,GR: Xalastra TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/87745.m3u8
+#EXTINF:-1,GR: Reload Play
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/87731.m3u8
+#EXTINF:-1,GR: Radio TV Pringipesa
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/87730.m3u8
+#EXTINF:-1,GR: Play TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/87728.m3u8
+#EXTINF:-1,GR: Baraza TV Greek Music Hits
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/87699.m3u8
+#EXTINF:-1,GR: Old Music Clips
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/18715.m3u8
+#EXTINF:-1,GR: Stin Ygeia Mas Re Paidia l
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/24372.m3u8
+#EXTINF:-1,GR: Stin Ygeia Mas Re Paidia ll
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/40104.m3u8
+#EXTINF:-1,GR: Rizes Ellinon
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/37306.m3u8
+#EXTINF:-1,---------- Αθλητικά -----------
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/54661.m3u8
+#EXTINF:-1,GR: UFC Fight Night (MMA)
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/45862.m3u8
+#EXTINF:-1,GR: Xtream Sport
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/24368.m3u8
+#EXTINF:-1,GR: Fox Sport TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/24701.m3u8
+#EXTINF:-1,GR: Motors TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/24702.m3u8
+#EXTINF:-1,GR: Auto Moto HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/63003.m3u8
+#EXTINF:-1,GR: MotorVision TV HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/23223.m3u8
+#EXTINF:-1,GR: EdgeSports
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/27429.m3u8
+#EXTINF:-1,GR: Ert Sport HD.
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/68599.m3u8
+#EXTINF:-1,GR: Eurosport 1 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17462.m3u8
+#EXTINF:-1,GR: Eurosport 2 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17573.m3u8
+#EXTINF:-1,GR: Ote Sport 1HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17393.m3u8
+#EXTINF:-1,GR: Ote Sport 1HD (B)
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52189.m3u8
+#EXTINF:-1,GR: Ote Sport 2HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17482.m3u8
+#EXTINF:-1,GR: Ote Sport 2HD (B)
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52190.m3u8
+#EXTINF:-1,GR: Ote Sport 3HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17594.m3u8
+#EXTINF:-1,GR: Ote Sport 3HD (B)
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52191.m3u8
+#EXTINF:-1,GR: Ote Sport 4HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17599.m3u8
+#EXTINF:-1,GR: Ote Sport 4HD (B)
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52192.m3u8
+#EXTINF:-1,GR: Ote Sport 5HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17742.m3u8
+#EXTINF:-1,GR: Ote Sport 5HD (B)
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52193.m3u8
+#EXTINF:-1,GR: Ote Sport 6HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/19215.m3u8
+#EXTINF:-1,GR: Ote Sport 7HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/19216.m3u8
+#EXTINF:-1,GR: Ote Sport 8HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/19217.m3u8
+#EXTINF:-1,GR: Ote Sport 9HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/57214.m3u8
+#EXTINF:-1,GR: Ote Sport Highlights HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/57253.m3u8
+#EXTINF:-1,GR: Paok Tv (Live Only)
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/65990.m3u8
+#EXTINF:-1,-----------Live Only----------
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/54660.m3u8
+#EXTINF:-1,GR: Nova Sports 1HD (Live Only)
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52199.m3u8
+#EXTINF:-1,GR: Nova Sports 1HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52019.m3u8
+#EXTINF:-1,GR: Nova Sports 2HD (Live Only)
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17585.m3u8
+#EXTINF:-1,GR: Nova Sports 2HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52010.m3u8
+#EXTINF:-1,GR: Nova Sports 3HD (Live Only)
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17587.m3u8
+#EXTINF:-1,GR: Nova Sports 3HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/52009.m3u8
+#EXTINF:-1,GR: Nova Sports 4HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/17592.m3u8
+#EXTINF:-1,GR: Nova Sports 5HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/54797.m3u8
+#EXTINF:-1,GR: Nova Sports24 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/27559.m3u8
+</p>
+        </div>
+        <div class="option">
+            <h6>BEIN SPORT</h6>
+            <p><strong>Type:</strong> <code>SPORT</code></p>
+            <p><strong>Default:</strong> <code>[]</code></p>
+            <p>B SPOR HABER 2 | http://p.dtv.sx:80/live/visiontv/775142/06587.ts.</p>
+        </div>
+        <div class="option">
+            <h6>Diziler</h6>
+            <p><strong>Type:</strong> <code>string</code></p>
+            <p><strong>Default:</strong> </p>
+            <p>http://p.dtv.sx:80/live/visiontv/775142/13982.ts</p>
+        </div>
+        <div class="option">
+            <h6>SD Extreme 480p</h6>
+            <p><strong>Type:</strong> <code>string</code></p>
+            <p><strong>Default:</strong> 
+            <p> http://cdn.nexttvnet.ru/hlsl/10/Russkiy_ekstrim/Russkiy_ekstrim_3/index.m3u8</p>
+        </div>
+        <div class="option">
+            <h6>Viet </h6>
+            <p><strong>Type:</strong> <code>UDP</code></p>
+            <p><strong>Default:</strong><p>#EXTINF:-1,VTV1 HD
+http://118.71.125.47:6606/udp/225.1.1.239:30120
+#EXTINF:-1,VTV3 HD
+http://118.71.125.47:6606/udp/225.1.1.240:30120
+#EXTINF:-1,VTV6 HD
+http://118.71.125.47:6606/udp/225.1.1.241:30120</p>
+        </div>
+        <div class="option">
+            <h6>Bangla </h6>
+            <p><strong>Type:</strong> <code>m3u8</code></p>
+            <p><strong>Default:</strong> 
+            <p>#EXTINF:-1,SA TV HD http://103.214.202.218:8081/live/satv-22/chunks.m3u8 #EXTINF:-1,&Flix HD http://103.214.202.218:8081/live/andflix-29/playlist.m3u8 #EXTINF:-1,Zoom http://103.214.202.218:8081/live/zoom-60/chunks.m3u8 #EXTINF:-1,Sony Max http://103.214.202.218:8081/live/satmax-37/chunks.m3u8 #EXTINF:-1,Sony TV [IN] http://103.214.202.218:8081/live/sony-40/chunks.m3u8</p>
+        </div>
+        <div class="option">
+            <h6>Sony Ten 3 </h6>
+            <p><strong>Type:</strong> <code>m3u8</code></p>
+            <p><strong>Default:</strong> 
+            <p>#EXTINF:-1,Sony Ten 3 http://ccn.anytv.live:8080/sonyten3/tracks-v1a1/mono.m3u8 </p>
+        </div>
+        <div class="option">
+            <h6>Albania </h6>
+            <p><strong>Type:</strong> <code>m3u8</code></p>
+            <p><strong>Default:</strong> 
+            <p>#EXTM3U
+#EXTINF:-1,==========Albania==========
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7235.m3u8
+#EXTINF:-1,AL: RTK 1
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4436.m3u8
+#EXTINF:-1,AL: RTK 1 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4435.m3u8
+#EXTINF:-1,AL: 21 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4383.m3u8
+#EXTINF:-1,AL: POPULLORE 21
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/11398.m3u8
+#EXTINF:-1,AL: RTV 21 Popullore
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4427.m3u8
+#EXTINF:-1,AL: RTV 21 Plus HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4428.m3u8
+#EXTINF:-1,AL: RTV 21 MK HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4429.m3u8
+#EXTINF:-1,AL: RTV Sharri
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4426.m3u8
+#EXTINF:-1,AL: RTV 21 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4431.m3u8
+#EXTINF:-1,AL: Klan Tv
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4363.m3u8
+#EXTINF:-1,AL: Klan Kosova HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4456.m3u8
+#EXTINF:-1,AL: Klan Kosova
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4364.m3u8
+#EXTINF:-1,AL: Klan HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4365.m3u8
+#EXTINF:-1,AL: Rtk Kosova
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4361.m3u8
+#EXTINF:-1,AL: Ktv Kohavision
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4362.m3u8
+#EXTINF:-1,AL: KTV  HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4453.m3u8
+#EXTINF:-1,AL: KTV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4454.m3u8
+#EXTINF:-1,AL: Top News
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4412.m3u8
+#EXTINF:-1,AL: Top Channel HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4352.m3u8
+#EXTINF:-1,AL: Top Channel
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4353.m3u8
+#EXTINF:-1,AL: T HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4354.m3u8
+#EXTINF:-1,AL: ALB UK
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/11402.m3u8
+#EXTINF:-1,AL: Vizion Plus EST USA
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4474.m3u8
+#EXTINF:-1,AL: Vizion Plus
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4340.m3u8
+#EXTINF:-1,AL: Vizion
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4388.m3u8
+#EXTINF:-1,AL: Tvsh
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4341.m3u8
+#EXTINF:-1,AL: TV Tetova HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4389.m3u8
+#EXTINF:-1,AL: TV Sharri HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4390.m3u8
+#EXTINF:-1,AL: TV Opoja
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4393.m3u8
+#EXTINF:-1,AL: TV Koha
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4342.m3u8
+#EXTINF:-1,AL: TV2 Gostivar
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4398.m3u8
+#EXTINF:-1,AL: TV Era
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4399.m3u8
+#EXTINF:-1,AL: TV Dukagjini
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4400.m3u8
+#EXTINF:-1,AL: Tring World
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4343.m3u8
+#EXTINF:-1,AL: Tring Tring
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4344.m3u8
+#EXTINF:-1,AL: Tring Super
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4345.m3u8
+#EXTINF:-1,AL: Tring Sport News HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4403.m3u8
+#EXTINF:-1,AL: Tring Sport 4 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4407.m3u8
+#EXTINF:-1,AL: Tring Sport 3 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4406.m3u8
+#EXTINF:-1,AL: Tring Sport 2 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4405.m3u8
+#EXTINF:-1,AL: Tring Sport 1 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4404.m3u8
+#EXTINF:-1,AL: Tring Shqip
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4346.m3u8
+#EXTINF:-1,AL: Tring Planet
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4347.m3u8
+#EXTINF:-1,AL: Tring Max
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4348.m3u8
+#EXTINF:-1,AL: Tring Live
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4415.m3u8
+#EXTINF:-1,AL: Tring Life
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4349.m3u8
+#EXTINF:-1,AL: Tring History
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4350.m3u8
+#EXTINF:-1,AL: Tring Jolly
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4408.m3u8
+#EXTINF:-1,AL: Tring Fantasy
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4351.m3u8
+#EXTINF:-1,AL: Tring Comedy
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4409.m3u8
+#EXTINF:-1,AL: Tring 3
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4410.m3u8
+#EXTINF:-1,AL: Tribuna TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4411.m3u8
+#EXTINF:-1,AL: Tirana TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4413.m3u8
+#EXTINF:-1,AL: Tip TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4414.m3u8
+#EXTINF:-1,AL: SuperSonic TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4417.m3u8
+#EXTINF:-1,AL: Super Sport Kosova 2 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4418.m3u8
+#EXTINF:-1,AL: Super Sport Kosova 1 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4419.m3u8
+#EXTINF:-1,AL: Super Sport 5 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4420.m3u8
+#EXTINF:-1,AL: Super Sport 4 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4421.m3u8
+#EXTINF:-1,AL: Super Sport 3 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4422.m3u8
+#EXTINF:-1,AL: Super sport 3
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4356.m3u8
+#EXTINF:-1,AL: Super Sport 2 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4423.m3u8
+#EXTINF:-1,AL: Super Sport 1 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4424.m3u8
+#EXTINF:-1,AL: Stinet
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4359.m3u8
+#EXTINF:-1,AL: Smile
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4360.m3u8
+#EXTINF:-1,AL: Rrokum HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4437.m3u8
+#EXTINF:-1,AL: Peace TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4439.m3u8
+#EXTINF:-1,AL: Ora News
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4440.m3u8
+#EXTINF:-1,AL: News 24
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4441.m3u8
+#EXTINF:-1,AL: My Music
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4442.m3u8
+#EXTINF:-1,AL: Mekke
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4445.m3u8
+#EXTINF:-1,AL: Medina Live
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4446.m3u8
+#EXTINF:-1,AL: Kino Premiere 3 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4451.m3u8
+#EXTINF:-1,AL: Kino Premiere 2 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4450.m3u8
+#EXTINF:-1,AL: Kino Premiere 1 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4449.m3u8
+#EXTINF:-1,AL: Living
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4452.m3u8
+#EXTINF:-1,AL: Koha TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4455.m3u8
+#EXTINF:-1,AL: Kanali 7
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4457.m3u8
+#EXTINF:-1,AL: Junior Tv
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4366.m3u8
+#EXTINF:-1,AL: RTV 21 Junior
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4430.m3u8
+#EXTINF:-1,AL: Jug TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4458.m3u8
+#EXTINF:-1,AL: Jolly HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4367.m3u8
+#EXTINF:-1,AL: Fox Crime
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/11405.m3u8
+#EXTINF:-1,AL: Folklorit
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4459.m3u8
+#EXTINF:-1,AL: First Channel
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4461.m3u8
+#EXTINF:-1,AL: Film Thriller
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4462.m3u8
+#EXTINF:-1,AL: Film Thriler
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4368.m3u8
+#EXTINF:-1,AL: Film Stinet
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4463.m3u8
+#EXTINF:-1,AL: Film Nje HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4369.m3u8
+#EXTINF:-1,AL: Film Komedi
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4370.m3u8
+#EXTINF:-1,AL: Film Junior
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4464.m3u8
+#EXTINF:-1,AL: Film Hits 1
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4465.m3u8
+#EXTINF:-1,AL: Film Hits  1
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4371.m3u8
+#EXTINF:-1,AL: Film Hits
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4372.m3u8
+#EXTINF:-1,AL: Film GOLD 4
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/11396.m3u8
+#EXTINF:-1,AL: Film GOLD 3
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/11395.m3u8
+#EXTINF:-1,AL: Film GOLD 2
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/11394.m3u8
+#EXTINF:-1,AL: Film GOLD 1
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/11393.m3u8
+#EXTINF:-1,AL: Film Dy HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4373.m3u8
+#EXTINF:-1,AL: Film Drame
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4374.m3u8
+#EXTINF:-1,AL: Film Autor
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4375.m3u8
+#EXTINF:-1,AL: Film Aksion
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4466.m3u8
+#EXTINF:-1,AL: Film Akcion
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4376.m3u8
+#EXTINF:-1,AL: Explorer Shkence
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4377.m3u8
+#EXTINF:-1,AL: Explorer Shkenca
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4467.m3u8
+#EXTINF:-1,AL: Explorer Natyre
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4378.m3u8
+#EXTINF:-1,AL: Explorer Natyra
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4468.m3u8
+#EXTINF:-1,AL: Explorer History
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4379.m3u8
+#EXTINF:-1,AL: Explorer Histori
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4469.m3u8
+#EXTINF:-1,AL: Era Tv
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4380.m3u8
+#EXTINF:-1,AL: Elrodi TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4470.m3u8
+#EXTINF:-1,AL: Digi Gold
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4381.m3u8
+#EXTINF:-1,AL: Dasma TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4472.m3u8
+#EXTINF:-1,AL: Cufo Tv
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4382.m3u8
+#EXTINF:-1,AL: Cufo
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4473.m3u8
+#EXTINF:-1,AL: BBF Music
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4475.m3u8
+#EXTINF:-1,AL: BangBang
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4476.m3u8
+#EXTINF:-1,AL: Ballkan TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4477.m3u8
+#EXTINF:-1,AL: Alsat M
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/11397.m3u8
+#EXTINF:-1,AL: Alb Popullore
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/11401.m3u8
+#EXTINF:-1,AL: ALB Music
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4480.m3u8
+#EXTINF:-1,AL: Alb Hits
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/11403.m3u8
+#EXTINF:-1,AL: ABC News
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4483.m3u8</p>
+        </div>
+
+        <h4 id="list-1"><a href="#list-1"># List 1
+            <small>- Portugal</small>
+        </a></h4>
+
+        <form method="POST" name="form-list-1" id="form-list-1" enctype="multipart/form-data">
+
+            <div class="input-field">
+                <input type="text" name="name-1" id="name-1">
+                <label for="name-1">Name</label>
+            </div>
+
+            <div class="input-field">
+                <input type="text" name="description-1" id="description-1">
+                <label for="description-1">Description</label>
+            </div>
+
+            <div class="input-field">
+                <label class="active">Photos</label>
+                <div class="input-images-1" style="padding-top: .5rem;"></div>
+            </div>
+
+            <button>Submit </button>
+
+        </form>
+
+        <h6>Iptv EX-YOU</h6>
+        <pre><code>#EXTM3U
+         #EXTINF:-1,==========Ex-Yu==========
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7240.m3u8
+#EXTINF:-1,EX-YU: TV1000
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7263.m3u8
+#EXTINF:-1,EX-YU: SPORT KLUB 1 HR
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7319.m3u8
+#EXTINF:-1,EX-YU: SPORT KLUB 2 HR
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7320.m3u8
+#EXTINF:-1,EX-YU: SPORT KLUB 3 HR
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7321.m3u8
+#EXTINF:-1,EX-YU: Arena Sport 1 HR
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7324.m3u8
+#EXTINF:-1,EX-YU: Arena Sport 2 HR
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7325.m3u8
+#EXTINF:-1,EX-YU: Arena Sport 3 HR
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7326.m3u8
+#EXTINF:-1,EX-YU: Arena Sport 4 HR
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7327.m3u8
+#EXTINF:-1,EX-YU: Arena Sport 5 HR
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7328.m3u8
+#EXTINF:-1,EX-YU: Arena Sport 1 SR
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/62152.m3u8
+#EXTINF:-1,EX-YU: Arena Sport 2 SR
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/62153.m3u8
+#EXTINF:-1,EX-YU: RTV Vojvodina 1
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7295.m3u8
+#EXTINF:-1,EX-YU: RTS 1 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7274.m3u8
+#EXTINF:-1,EX-YU: RTS 2 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7275.m3u8
+#EXTINF:-1,EX-YU: RTL PASSION [HR]
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7272.m3u8
+#EXTINF:-1,EX-YU: RTL LIVING
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7269.m3u8
+#EXTINF:-1,EX-YU: RTL KOCKICA
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7270.m3u8
+#EXTINF:-1,EX-YU: RTL CRIME
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7271.m3u8
+#EXTINF:-1,EX-YU: RTL
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7267.m3u8
+#EXTINF:-1,EX-YU: RTL 2
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7268.m3u8
+#EXTINF:-1,EX-YU: OBN
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7276.m3u8
+#EXTINF:-1,EX-YU: NOVA HR
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7286.m3u8
+#EXTINF:-1,EX-YU: NICKELODEON
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7306.m3u8
+#EXTINF:-1,EX-YU: NATIONAL GEOGRAPHIC HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7302.m3u8
+#EXTINF:-1,EX-YU: N1
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7303.m3u8
+#EXTINF:-1,EX-YU: MINI
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7304.m3u8
+#EXTINF:-1,EX-YU: KLASIK TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7315.m3u8
+#EXTINF:-1,EX-YU: HRT 1
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7278.m3u8
+#EXTINF:-1,EX-YU: HRT 2
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7279.m3u8
+#EXTINF:-1,EX-YU: HRT 3
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7280.m3u8
+#EXTINF:-1,EX-YU: HRT 4
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7281.m3u8
+#EXTINF:-1,EX-YU: HISTORY CHANNEL
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7300.m3u8
+#EXTINF:-1,EX-YU: HBO HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7288.m3u8
+#EXTINF:-1,EX-YU: HBO 3 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7287.m3u8
+#EXTINF:-1,EX-YU: HAYATOVCI
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7293.m3u8
+#EXTINF:-1,EX-YU: HAYAT FOLK
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7294.m3u8
+#EXTINF:-1,EX-YU: HAYAT TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7292.m3u8
+#EXTINF:-1,EX-YU: HAYAT PLUS
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7291.m3u8
+#EXTINF:-1,EX-YU: HAPPY
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7296.m3u8
+#EXTINF:-1,EX-YU: GRAND TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7307.m3u8
+#EXTINF:-1,EX-YU: Osjecka TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7273.m3u8
+#EXTINF:-1,EX-YU: FOX MOVIES
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7285.m3u8
+#EXTINF:-1,EX-YU: FOX LIFE HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7283.m3u8
+#EXTINF:-1,EX-YU: FOX CRIME HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7284.m3u8
+#EXTINF:-1,EX-YU: FOX
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7282.m3u8
+#EXTINF:-1,EX-YU: FACE TV HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7313.m3u8
+#EXTINF:-1,EX-YU: EUROSPORT 1 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7317.m3u8
+#EXTINF:-1,EX-YU: EUROSPORT 2 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7318.m3u8
+#EXTINF:-1,EX-YU: DOMA TV HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7314.m3u8
+#EXTINF:-1,EX-YU: DM SAT
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7312.m3u8
+#EXTINF:-1,EX-YU: DISCOVERY CHANNEL
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7301.m3u8
+#EXTINF:-1,EX-YU: CineStar Premier 1
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7265.m3u8
+#EXTINF:-1,EX-YU: CineStar Premier 2
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7266.m3u8
+#EXTINF:-1,EX-YU: CineStar Action
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7264.m3u8
+#EXTINF:-1,EX-YU: CINEMAX 1 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7289.m3u8
+#EXTINF:-1,EX-YU: CINEMAX 2 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7290.m3u8
+#EXTINF:-1,EX-YU: BN MUSIC
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7311.m3u8
+#EXTINF:-1,EX-YU: B 92
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7308.m3u8
+#EXTINF:-1,EX-YU: ATV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7277.m3u8
+#EXTINF:-1,EX-YU: ATLAS TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7297.m3u8
+#EXTINF:-1,EX-YU: ANIMAL PLANET
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7299.m3u8
+#EXTINF:-1,EX-YU: AL JAZEERA BALKANS
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7316.m3u8
+#EXTINF:-1,EX-YU: 24 KITCHEN
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7298.m3u8
+#EXTINF:-1,EX-YU: Film Box Extra
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5512.m3u8
+#EXTINF:-1,EX-YU: PINK ZABAVA
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5519.m3u8
+#EXTINF:-1,EX-YU: PINK WORLD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5527.m3u8
+#EXTINF:-1,EX-YU: PINK WESTERN
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5524.m3u8
+#EXTINF:-1,EX-YU: PINK THRILLER
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5526.m3u8
+#EXTINF:-1,EX-YU: PINK SOAP
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5511.m3u8
+#EXTINF:-1,EX-YU: PINK SCI-FI & FANTASY
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5528.m3u8
+#EXTINF:-1,EX-YU: PINK ROMANCE
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5525.m3u8
+#EXTINF:-1,EX-YU: PINK REALITY
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5520.m3u8
+#EXTINF:-1,EX-YU: PINK PREMIUM
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5523.m3u8
+#EXTINF:-1,EX-YU: PINK PLUS
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5510.m3u8
+#EXTINF:-1,EX-YU: PINK PEDIA
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5517.m3u8
+#EXTINF:-1,EX-YU: PINK M
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5506.m3u8
+#EXTINF:-1,EX-YU: PINK KIDS
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5509.m3u8
+#EXTINF:-1,EX-YU: PINK HORROR
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5522.m3u8
+#EXTINF:-1,EX-YU: PINK FOLK 2
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5514.m3u8
+#EXTINF:-1,EX-YU: PINK FOLK 1
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5513.m3u8
+#EXTINF:-1,EX-YU: PINK FILM
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5508.m3u8
+#EXTINF:-1,EX-YU: PINK FAMLIY
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5515.m3u8
+#EXTINF:-1,EX-YU: PINK EXTRA
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5516.m3u8
+#EXTINF:-1,EX-YU: PINK CRIME & MISTERY
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5529.m3u8
+#EXTINF:-1,EX-YU: PINK COMEDY
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5521.m3u8
+#EXTINF:-1,EX-YU: PINK BH
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5507.m3u8
+#EXTINF:-1,EX-YU: PINK ACTION
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5518.m3u8
+#EXTINF:-1,EX-YU: PINK 3
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5504.m3u8
+#EXTINF:-1,EX-YU: PINK 2
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5505.m3u8
+#EXTINF:-1,EX-YU: PINK 1
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/5503.m3u8</code></pre>
+
+        <h6>IPTV Source</h6>
+        <pre><code>SPORT TV</code></pre>
+         #EXTINF:-1,==========Sports==========
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/7242.m3u8
+#EXTINF:-1,SPORT: BEIN SPORTS 1 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/1063.m3u8
+#EXTINF:-1,SPORT: BEIN SPORTS 2 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/1064.m3u8
+#EXTINF:-1,SPORT: BEIN SPORTS 3 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/1065.m3u8
+#EXTINF:-1,SPORT: BEIN SPORTS 4 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/1066.m3u8
+#EXTINF:-1,SPORT: BEIN SPORTS 5 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/1067.m3u8
+#EXTINF:-1,SPORT: BEIN SPORTS 6 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/1068.m3u8
+#EXTINF:-1,SPORT: BEIN SPORTS 7 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/1069.m3u8
+#EXTINF:-1,SPORT: BEIN SPORTS 8 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/1070.m3u8
+#EXTINF:-1,SPORT: BEIN SPORTS 9 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/1071.m3u8
+#EXTINF:-1,SPORT: BEIN SPORTS 10 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/1072.m3u8
+#EXTINF:-1,SPORT: BEIN SPORTS 11 HD (English)
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4339.m3u8
+#EXTINF:-1,SPORT: BEIN SPORTS 12 HD (English)
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/4385.m3u8
+#EXTINF:-1,-------- BasketBall --------
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/71786.m3u8
+#EXTINF:-1,SPORT: NBA TV HD  - USA
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/71778.m3u8
+#EXTINF:-1,SPORT: BeIN Sport NBA HD - Arabic
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/71779.m3u8
+#EXTINF:-1,SPORT: Sky Sport NBA HD - Italia
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/71780.m3u8
+#EXTINF:-1,SPORT: NBA HD - Portuguese
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/71781.m3u8
+#EXTINF:-1,SPORT: Fox Sports Wisconsin HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/71785.m3u8
+#EXTINF:-1,SPORT: Fox Sports Detroit HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/71782.m3u8
+#EXTINF:-1,SPORT: Fox Sport Carolina HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/71790.m3u8
+#EXTINF:-1,SPORT: Vamos HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/71784.m3u8
+#EXTINF:-1,SPORT: ESPN HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/71783.m3u8
+#EXTINF:-1,SPORT: ABC HD 
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/71787.m3u8
+#EXTINF:-1,SPORT: TNT HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/71788.m3u8
+#EXTINF:-1,-------- Italian Sport --------
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/75764.m3u8
+#EXTINF:-1,IT: Sky Sport 1 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/75719.m3u8
+#EXTINF:-1,IT: Rai Sport+ HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/75716.m3u8
+#EXTINF:-1,IT: Sky Sport Serie A HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/75720.m3u8
+#EXTINF:-1,IT: SportItalia HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/75722.m3u8
+#EXTINF:-1,IT: Dazn Sport 1 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/75730.m3u8
+#EXTINF:-1,IT: Dazn Sport 2 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/75731.m3u8
+#EXTINF:-1,IT: Top Calcio 24 HD
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/75763.m3u8
+#EXTINF:-1,IT: ROMA TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/75727.m3u8
+#EXTINF:-1,IT: Lazio TV
+http://dna-iptv.com:999/live/aRqbtWMgol/mCZnbRT8DR/75739.m3u8
+
+        <h4 id="list-2"><a href="#list-2"># List 2
+            <small>- with m3u8</small>
+        </a></h4>
+
+        <form method="POST" name="form-list-2" id="form-list-2" enctype="multipart/form-data">
+
+            <div class="input-field">
+                <input type="text" name="name-2" id="name-2" value="">
+                <label for="name-2" class="active">Name</label>
+            </div>
+
+            <div class="input-field">
+                <input type="text" name="description-2" id="description-2"
+                       value="">
+                <label for="description-2" class="active">Description</label>
+            </div>
+
+            <div class="input-field">
+                <label class="active">Photos</label>
+                <div class="input-images-2" style="padding-top: .5rem;"></div>
+            </div>
+
+            <button>Submit </button>
+                    </form>
+
+        <h6>Zee tv Source</h6>
+        <pre><code>#EXTM3U
+         #EXTINF:-1,Zee Bangla http://z5amshls.akamaized.net/zeebanglahd/playlist.m3u8
+         #EXTINF:-1,Zee Bangla http://z5amshls.akamaized.net/zeebanglahd/tracks-v1a1/playlist.m3u8
+         #EXTINF:-1,Zee Bangla http://z5amshls.akamaized.net/zeebanglahd/tracks-v1a1/index.m3u8
+         #EXTINF:-1,Zee Cinema http://z5amshls.akamaized.net/zcinemahd/playlist.m3u8
+         #EXTINF:-1,Zee Cinema http://z5amshls.akamaized.net/zcinemahd/tracks-v1a1/playlist.m3u8
+         #EXTINF:-1,Zee Cinema http://z5amshls.akamaized.net/zcinemahd/tracks-v1a1/index.m3u8
+         #EXTINF:-1,Z Living USA http://z5amshls.akamaized.net/zlivingusa/playlist.m3u8
+         #EXTINF:-1,Z Living USA http://z5amshls.akamaized.net/zlivingusa/tracks-v1a1/playlist.m3u8
+         #EXTINF:-1,Z Living USA http://z5amshls.akamaized.net/zlivingusa/tracks-v1a1/index.m3u8
+         #EXTINF:-1,And TV SD http://z5amshls.akamaized.net/andtvsd/playlist.m3u8
+         #EXTINF:-1,And TV SD http://z5amshls.akamaized.net/andtvsd/tracks-v1a1/playlist.m3u8
+         #EXTINF:-1,And TV SD http://z5amshls.akamaized.net/andtvsd/tracks-v1a1/index.m3u8
+         #EXTINF:-1,Zee TV HD http://z5amshls.akamaized.net/zeetvhd/playlist.m3u8
+         #EXTINF:-1,Zee TV HD http://z5amshls.akamaized.net/zeetvhd/tracks-v1a1/playlist.m3u8
+         #EXTINF:-1,Zee TV HD http://z5amshls.akamaized.net/zeetvhd/tracks-v1a1/index.m3u8 </code></pre>
+        <h6>IPTV Source</h6>
+        <pre><code>Mixed  = [
+    #EXTM3U
+     #EXTINF:-1,ARTV
+     http://194.44.48.82:8021/play/a01e
+     #EXTINF:-1,BBC World News
+     http://194.44.48.82:8021/play/a017
+     #EXTINF:-1,Baby TV
+     http://194.44.48.82:8021/play/a00x
+     #EXTINF:-1,Biggs
+     http://194.44.48.82:8021/play/a013
+     #EXTINF:-1,Blaze
+     http://194.44.48.82:8021/play/a00y
+     #EXTINF:-1,CNN
+     http://194.44.48.82:8021/play/a015
+     #EXTINF:-1,Disney Junior
+     http://194.44.48.82:8021/play/a01c 
+     #EXTINF:-1,Euronews
+     http://194.44.48.82:8021/play/a018
+     #EXTINF:-1,FOX Movies
+     http://194.44.48.82:8021/play/a00w
+     #EXTINF:-1,Hot
+     http://194.44.48.82:8021/play/a01b
+     #EXTINF:-1,Mezzo
+     http://194.44.48.82:8021/play/a011
+     #EXTINF:-1,SIC Mulher
+     http://194.44.48.82:8021/play/a00u
+     #EXTINF:-1,SPORT TV+
+     http://194.44.48.82:8021/play/a00z
+     #EXTINF:-1, News
+     http://194.44.48.82:8021/play/a016
+     #EXTINF:-1,Sport TV 5 
+     http://194.44.48.82:8021/play/a019
+     #EXTINF:-1,Sporting TV
+     http://194.44.48.82:8021/play/a01d
+     #EXTINF:-1,TLC
+     http://194.44.48.82:8021/play/a00v
+     #EXTINF:-1,TVE 24h
+     http://194.44.48.82:8021/play/a014
+     #EXTINF:-1,TVE Internacional http://194.44.48.82:8021/play/a012
+     #EXTINF:-1,TVI Reality
+     http://194.44.48.82:8021/play/a00</code></pre>
+
+    </div>
+
+    <div id="show-submit-data" class="modal" style="visibility: hidden;">
+        <div class="content">
+            <h4>Submitted data:</h4>
+            <p id="display-name"><strong>Name:</strong> <span></span></p>
+            <p id="display-description"><strong>Description:</strong> <span></span></p>
+            <p><strong>Uploaded images:</strong></p>
+            <ul id="display-new-images"></ul>
+            <p><strong>Preloaded images:</strong></p>
+            <ul id="display-preloaded-images"></ul>
+            <a href="javascript:$('#show-submit-data').css('visibility', 'hidden')" class="close">x</a>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>This project is licensed under the piccolo-tv License - see the <a
+            href="https://piccolo-tv.com">RESERVED</a> &</p>
+</footer>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="dist/image-uploader.min.js"></script>
+
+<script>
+    $(function () {
+
+        $('.input-images-1').imageUploader();
+
+        let preloaded = [
+            {id: 1, src: 'https://picsum.photos/500/500?random=1'},
+            {id: 2, src: 'https://picsum.photos/500/500?random=2'},
+            {id: 3, src: 'https://picsum.photos/500/500?random=3'},
+            {id: 4, src: 'https://picsum.photos/500/500?random=4'},
+            {id: 5, src: 'https://picsum.photos/500/500?random=5'},
+            {id: 6, src: 'https://picsum.photos/500/500?random=6'},
+        ];
+
+        $('.input-images-2').imageUploader({
+            preloaded: preloaded,
+            imagesInputName: 'photos',
+            preloadedInputName: 'old',
+            maxSize: 2 * 1024 * 1024,
+            maxFiles: 10
+        });
+
+        $('form').on('submit', function (event) {
+
+            // Stop propagation
+            event.preventDefault();
+            event.stopPropagation();
+
+            // Get some vars
+            let $form = $(this),
+                $modal = $('.modal');
+
+            // Set name and description
+            $modal.find('#display-name span').text($form.find('input[id^="name"]').val());
+            $modal.find('#display-description span').text($form.find('input[id^="description"]').val());
+
+            // Get the input file
+            let $inputImages = $form.find('input[name^="images"]');
+            if (!$inputImages.length) {
+                $inputImages = $form.find('input[name^="photos"]')
+            }
+
+            // Get the new files names
+            let $fileNames = $('<ul>');
+            for (let file of $inputImages.prop('files')) {
+                $('<li>', {text: file.name}).appendTo($fileNames);
+            }
+
+            // Set the new files names
+            $modal.find('#display-new-images').html($fileNames.html());
+
+            // Get the preloaded inputs
+            let $inputPreloaded = $form.find('input[name^="old"]');
+            if ($inputPreloaded.length) {
+
+                // Get the ids
+                let $preloadedIds = $('<ul>');
+                for (let iP of $inputPreloaded) {
+                    $('<li>', {text: '#' + iP.value}).appendTo($preloadedIds);
+                }
+
+                // Show the preloadede info and set the list of ids
+                $modal.find('#display-preloaded-images').show().html($preloadedIds.html());
+
+            } else {
+
+                // Hide the preloaded info
+                $modal.find('#display-preloaded-images').hide();
+
+            }
+
+            // Show the modal
+            $modal.css('visibility', 'visible');
+        });
+
+        // Input and label handler
+        $('input').on('focus', function () {
+            $(this).parent().find('label').addClass('active')
+        }).on('blur', function () {
+            if ($(this).val() == '') {
+                $(this).parent().find('label').removeClass('active');
+            }
+        });
+
+        // Sticky menu
+        let $nav = $('nav'),
+            $header = $('header'),
+            offset = 4 * parseFloat($('body').css('font-size')),
+            scrollTop = $(this).scrollTop();
+
+        // Initial verification
+        setNav();
+
+        // Bind scroll
+        $(window).on('scroll', function () {
+            scrollTop = $(this).scrollTop();
+            // Update nav
+            setNav();
+        });
+
+        function setNav() {
+            if (scrollTop > $header.outerHeight()) {
+                $nav.css({position: 'fixed', 'top': offset});
+            } else {
+                $nav.css({position: '', 'top': ''});
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
