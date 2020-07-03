@@ -1,8 +1,8 @@
 /*
  * Online Visitors Counter
  *
- * @copyright  Copyright 2014, Victor Nogueira (http://github.com/felladrin)
- * @link       http://github.com/felladrin/online-visitors-counter
+ * @copyright  Copyright 2020, ILIOS IPTV (https://github.com/treshi)
+ * @link       https://treshi.github.io/daily-iptv.al/
  * @license    MIT License (http://opensource.org/licenses/MIT)
  */
 
