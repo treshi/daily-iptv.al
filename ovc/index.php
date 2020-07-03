@@ -1,11 +1,5 @@
 <?php
-/*
- * Online Visitors Counter
- *
- * @copyright  Copyright 2014, Victor Nogueira (http://github.com/felladrin)
- * @link       http://github.com/felladrin/online-visitors-counter
- * @license    MIT License (http://opensource.org/licenses/MIT)
- */
+
 
 require_once 'config.php';
 ?>
